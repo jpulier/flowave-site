@@ -25,7 +25,7 @@ function AnimatedNumber({
 
   useEffect(() => {
     if (!isInView) return;
-    const controls = animate(motionVal, value, { duration: 1.5, ease: "easeOut" });
+    const controls = animate(motionVal, value, { duration: 1.5, ease: "easeOut" as const });
     return controls.stop;
   }, [isInView, motionVal, value]);
 
@@ -48,7 +48,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
+    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" as const },
   }),
 };
 
