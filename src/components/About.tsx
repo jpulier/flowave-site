@@ -39,7 +39,12 @@ export default function About() {
       {/* Section divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-accent)]/50 to-transparent" />
 
-      <div className="mx-auto max-w-6xl">
+      {/* Subtle radial background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-1/2 h-[600px] w-[600px] -translate-x-1/3 -translate-y-1/2 rounded-full bg-[var(--color-accent)]/[0.03] blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl">
         {/* Label */}
         <motion.p
           initial={{ opacity: 0, x: -10 }}
@@ -57,7 +62,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl font-bold leading-tight md:text-5xl"
+          className="font-heading text-4xl font-bold leading-tight md:text-5xl"
         >
           AI-Powered Lead Generation at Scale
         </motion.h2>
@@ -85,10 +90,17 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               custom={i}
-              className="group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/40 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)]"
+              className="card-shine group rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent)]/40 hover:shadow-[0_0_30px_rgba(0,212,255,0.06)]"
             >
-              <card.icon className="mb-5 h-8 w-8 text-[var(--color-accent)]" />
-              <h3 className="mb-3 text-xl font-semibold">{card.title}</h3>
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-xl bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-secondary)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              {/* Icon with background */}
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-cyan-500/10">
+                <card.icon className="h-6 w-6 text-[var(--color-accent)]" />
+              </div>
+
+              <h3 className="font-heading mb-3 text-xl font-semibold">{card.title}</h3>
               <p className="text-[var(--color-text-secondary)] leading-relaxed">
                 {card.description}
               </p>

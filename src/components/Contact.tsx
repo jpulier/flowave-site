@@ -17,10 +17,20 @@ export default function Contact() {
       {/* Section divider */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-accent)]/50 to-transparent" />
 
-      {/* Background orbs */}
+      {/* Animated drifting orbs */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/4 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[var(--color-accent)]/[0.04] blur-[100px]" />
-        <div className="absolute right-1/4 bottom-1/4 h-[300px] w-[300px] translate-x-1/2 rounded-full bg-[var(--color-accent)]/[0.03] blur-[80px]" />
+        <div
+          className="absolute left-1/4 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[var(--color-accent)]/[0.05] blur-[100px]"
+          style={{ animation: "orb-drift-1 12s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute right-1/4 bottom-1/4 h-[300px] w-[300px] translate-x-1/2 rounded-full bg-[var(--color-accent-secondary)]/[0.04] blur-[80px]"
+          style={{ animation: "orb-drift-2 10s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute left-1/2 top-1/2 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)]/[0.03] blur-[90px]"
+          style={{ animation: "orb-drift-3 14s ease-in-out infinite" }}
+        />
       </div>
 
       <div className="relative mx-auto max-w-4xl text-center">
@@ -43,9 +53,9 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           custom={1}
-          className="text-4xl font-bold leading-tight md:text-5xl"
+          className="font-heading text-4xl font-bold leading-tight md:text-5xl"
         >
-          Ready to Scale Your Pipeline?
+          Let&apos;s Build Something
         </motion.h2>
 
         {/* Subtext */}
@@ -72,7 +82,7 @@ export default function Contact() {
         >
           <a
             href="mailto:jpulier@gmail.com"
-            className="inline-block rounded-full bg-[var(--color-accent)] px-10 py-4 text-lg font-semibold text-[var(--color-bg-primary)] transition-all duration-200 hover:scale-105 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]"
+            className="inline-block rounded-lg bg-[var(--color-accent)] px-10 py-4 text-lg font-semibold text-[var(--color-bg-primary)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_8px_30px_rgba(0,212,255,0.35)]"
           >
             Contact Us
           </a>

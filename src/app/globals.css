@@ -3,8 +3,10 @@
 :root {
   --color-bg-primary: #0a0a0a;
   --color-bg-secondary: #111111;
+  --color-bg-elevated: #161616;
   --color-accent: #00d4ff;
   --color-accent-hover: #00b8e6;
+  --color-accent-secondary: #7c3aed;
   --color-text-primary: #ffffff;
   --color-text-secondary: #a0a0a0;
   --color-border: #1a1a1a;
@@ -19,11 +21,28 @@ body {
   color: var(--color-text-primary);
 }
 
+/* ── Noise grain texture overlay ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ── Heading font class ── */
+.font-heading {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
 /* ── Hero animated gradient mesh ── */
 .hero-gradient {
   background:
     radial-gradient(ellipse 80% 60% at 20% 40%, rgba(0, 212, 255, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(13, 27, 42, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 30%, rgba(124, 58, 237, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse 70% 50% at 60% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
     radial-gradient(ellipse 90% 60% at 40% 60%, rgba(27, 40, 56, 0.6) 0%, transparent 70%),
     var(--color-bg-primary);
@@ -32,25 +51,102 @@ body {
 }
 
 @keyframes hero-mesh {
-  0% {
-    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 50%, 0% 0%;
-  }
-  25% {
-    background-position: 30% 20%, 70% 40%, 20% 60%, 80% 30%, 0% 0%;
-  }
-  50% {
-    background-position: 60% 40%, 40% 70%, 80% 30%, 20% 70%, 0% 0%;
-  }
-  75% {
-    background-position: 40% 60%, 60% 20%, 30% 80%, 70% 40%, 0% 0%;
-  }
-  100% {
-    background-position: 100% 100%, 0% 100%, 50% 0%, 100% 50%, 0% 0%;
-  }
+  0% { background-position: 0% 0%, 100% 0%, 50% 100%, 0% 50%, 0% 0%; }
+  25% { background-position: 30% 20%, 70% 40%, 20% 60%, 80% 30%, 0% 0%; }
+  50% { background-position: 60% 40%, 40% 70%, 80% 30%, 20% 70%, 0% 0%; }
+  75% { background-position: 40% 60%, 60% 20%, 30% 80%, 70% 40%, 0% 0%; }
+  100% { background-position: 100% 100%, 0% 100%, 50% 0%, 100% 50%, 0% 0%; }
 }
 
 /* ── Dot grid overlay ── */
 .hero-dots {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* ── Hero pill rotating gradient border ── */
+.hero-pill {
+  position: relative;
+  background: var(--color-bg-primary);
+  z-index: 1;
+}
+.hero-pill::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  padding: 1px;
+  background: conic-gradient(from var(--pill-angle, 0deg), #00d4ff, #7c3aed, #00d4ff);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  animation: pill-spin 4s linear infinite;
+  z-index: -1;
+}
+@property --pill-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes pill-spin {
+  to { --pill-angle: 360deg; }
+}
+
+/* ── Hero glow orb pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+}
+
+/* ── Scroll line animation ── */
+@keyframes scroll-line {
+  0% { transform: scaleY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* ── Card shine sweep ── */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.card-shine:hover::after {
+  transform: translateX(100%);
+}
+
+/* ── Contact orbs animation ── */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-40%, -30px); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(50%, 0); }
+  50% { transform: translate(40%, 20px); }
+}
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+
+/* ── How It Works connecting line pulse ── */
+@keyframes line-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }

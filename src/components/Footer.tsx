@@ -9,11 +9,14 @@ const NAV_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-6 py-12">
+    <footer className="relative bg-[var(--color-bg-secondary)] px-6 py-12">
+      {/* Gradient top line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent" />
+
       <div className="mx-auto max-w-6xl">
         {/* Top row */}
         <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
-          <a href="#" className="text-lg font-bold tracking-[0.25em] text-white">
+          <a href="#" className="font-heading text-lg font-bold tracking-[0.25em] text-white">
             FLOWAVE
           </a>
 

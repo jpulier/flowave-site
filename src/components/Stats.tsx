@@ -4,8 +4,8 @@ import { motion, useInView, useMotionValue, useTransform, animate } from "framer
 import { useRef, useEffect } from "react";
 
 const STATS = [
-  { value: 10, prefix: "", suffix: "+", label: "Verticals Served" },
-  { value: 50, prefix: "$", suffix: "M+", label: "In Client Revenue Generated" },
+  { value: 3, prefix: "", suffix: "+", label: "Active Verticals" },
+  { value: 50, prefix: "$", suffix: "M+", label: "Revenue Opportunity Captured" },
   { value: 24, prefix: "", suffix: "/7", label: "Autonomous Operation" },
 ];
 
@@ -25,7 +25,7 @@ function AnimatedNumber({
 
   useEffect(() => {
     if (!isInView) return;
-    const controls = animate(motionVal, value, { duration: 1.5, ease: "easeOut" as const });
+    const controls = animate(motionVal, value, { duration: 2, ease: "easeOut" as const });
     return controls.stop;
   }, [isInView, motionVal, value]);
 
@@ -37,7 +37,7 @@ function AnimatedNumber({
   }, [rounded, prefix, suffix]);
 
   return (
-    <span ref={ref} className="text-5xl font-bold text-[var(--color-accent)] md:text-6xl">
+    <span ref={ref} className="relative inline-block text-5xl font-bold font-heading text-[var(--color-accent)] md:text-6xl">
       {prefix}0{suffix}
     </span>
   );
@@ -69,7 +69,10 @@ export default function Stats() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             custom={i}
+            className="relative"
           >
+            {/* Glow behind number */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[var(--color-accent)]/10 to-[var(--color-accent-secondary)]/5 blur-2xl" />
             <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
             <p className="mt-3 text-sm uppercase tracking-widest text-[var(--color-text-secondary)]">
               {stat.label}
