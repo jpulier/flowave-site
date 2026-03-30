@@ -81,7 +81,7 @@ export default function Contact() {
           className="mt-10"
         >
           <a
-            href="mailto:jpulier@gmail.com"
+            href="mailto:jake@flowave.co"
             className="inline-block rounded-lg bg-[var(--color-accent)] px-10 py-4 text-lg font-semibold text-[var(--color-bg-primary)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_8px_30px_rgba(0,212,255,0.35)]"
           >
             Contact Us
@@ -99,10 +99,10 @@ export default function Contact() {
         >
           or reach out directly at{" "}
           <a
-            href="mailto:jpulier@gmail.com"
+            href="mailto:jake@flowave.co"
             className="text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
           >
-            jpulier@gmail.com
+            jake@flowave.co
           </a>
         </motion.p>
       </div>
