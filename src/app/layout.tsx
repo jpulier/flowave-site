@@ -15,6 +15,17 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Flowave",
   description: "AI-Native Lead Generation",
+  openGraph: {
+    title: "Flowave",
+    description: "AI-Native Lead Generation",
+    siteName: "Flowave",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Flowave",
+    description: "AI-Native Lead Generation",
+  },
 };
 
 export default function RootLayout({

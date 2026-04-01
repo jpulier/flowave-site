@@ -64,7 +64,7 @@ body::after {
   background-size: 24px 24px;
 }
 
-/* ── Hero pill rotating gradient border ── */
+/* ── Hero pill static gradient border ── */
 .hero-pill {
   position: relative;
   background: var(--color-bg-primary);
@@ -76,21 +76,12 @@ body::after {
   inset: -1px;
   border-radius: 9999px;
   padding: 1px;
-  background: conic-gradient(from var(--pill-angle, 0deg), #00d4ff, #7c3aed, #00d4ff);
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  animation: pill-spin 4s linear infinite;
   z-index: -1;
-}
-@property --pill-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes pill-spin {
-  to { --pill-angle: 360deg; }
 }
 
 /* ── Hero glow orb pulse ── */
