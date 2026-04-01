@@ -28,17 +28,6 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-4xl">
-        {/* Pill badge with rotating gradient border */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="hero-pill mb-8 rounded-full bg-[var(--color-bg-primary)] px-5 py-2 text-sm text-[var(--color-accent)] shadow-[0_0_20px_rgba(0,212,255,0.08)]"
-        >
-          AI-Native Lead Generation
-        </motion.div>
-
         {/* Headline */}
         <motion.h1
           variants={fadeUp}

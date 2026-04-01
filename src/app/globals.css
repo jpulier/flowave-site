@@ -64,25 +64,6 @@ body::after {
   background-size: 24px 24px;
 }
 
-/* ── Hero pill static gradient border ── */
-.hero-pill {
-  position: relative;
-  background: var(--color-bg-primary);
-  z-index: 1;
-}
-.hero-pill::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: 9999px;
-  padding: 1px;
-  background: linear-gradient(135deg, #00d4ff, #7c3aed);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  z-index: -1;
-}
 
 /* ── Hero glow orb pulse ── */
 @keyframes glow-pulse {
