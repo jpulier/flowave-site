@@ -1,47 +1,11 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const STATS = [
-  { value: 3, prefix: "", suffix: "+", label: "Active Verticals" },
-  { value: 50, prefix: "$", suffix: "M+", label: "Revenue Opportunity Captured" },
-  { value: 24, prefix: "", suffix: "/7", label: "Autonomous Operation" },
+  { display: "1+", label: "Active Vertical" },
+  { display: "24/7", label: "Autonomous Operation" },
 ];
-
-function AnimatedNumber({
-  value,
-  prefix,
-  suffix,
-}: {
-  value: number;
-  prefix: string;
-  suffix: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const motionVal = useMotionValue(0);
-  const rounded = useTransform(motionVal, (v) => Math.round(v));
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-
-  useEffect(() => {
-    if (!isInView) return;
-    const controls = animate(motionVal, value, { duration: 2, ease: "easeOut" as const });
-    return controls.stop;
-  }, [isInView, motionVal, value]);
-
-  useEffect(() => {
-    const unsubscribe = rounded.on("change", (v) => {
-      if (ref.current) ref.current.textContent = `${prefix}${v}${suffix}`;
-    });
-    return unsubscribe;
-  }, [rounded, prefix, suffix]);
-
-  return (
-    <span ref={ref} className="relative inline-block text-5xl font-bold font-heading text-[var(--color-accent)] md:text-6xl">
-      {prefix}0{suffix}
-    </span>
-  );
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -60,7 +24,7 @@ export default function Stats() {
       {/* Bottom divider */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-2/3 bg-gradient-to-r from-transparent via-[var(--color-accent)]/50 to-transparent" />
 
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 text-center md:grid-cols-3 md:gap-8">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 text-center md:grid-cols-2 md:gap-8">
         {STATS.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -73,7 +37,9 @@ export default function Stats() {
           >
             {/* Glow behind number */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[var(--color-accent)]/10 to-[var(--color-accent-secondary)]/5 blur-2xl" />
-            <AnimatedNumber value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+            <span className="relative inline-block text-5xl font-bold font-heading text-[var(--color-accent)] md:text-6xl">
+              {stat.display}
+            </span>
             <p className="mt-3 text-sm uppercase tracking-widest text-[var(--color-text-secondary)]">
               {stat.label}
             </p>
